@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+.env
+
+# Virtual environments
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models (too large for git)
+*.pt
+*.onnx
+*.pth
+*.pkl
+
+# Videos (too large)
+*.mp4
+*.mpg
+*.avi
+*.mov
+
+# Data files
+*.sqlite3
+*.json
+*.csv
+
+#archive 
+archive/
+
+# Outputs
+reid_system/outputs/
+step1_crops/
+step2_global_crops/
+tracked_*.mp4
+
+# Logs
+*.log
