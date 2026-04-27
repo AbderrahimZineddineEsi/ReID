@@ -1,16 +1,15 @@
 """
-Global Identity Manager – links local track IDs to persistent person identities.
+Global Identity Manager – faithful port of robust_track_linked.py logic.
 
-This module implements the online re‑identification logic:
-- Prototype embedding + colour signature per global identity.
-- Short‑term re‑link using IoU bonus, long‑term using appearance only.
-- Drift detection: if a track diverges from its assigned global identity, it splits.
-- Stale mapping cleanup.
-
-All thresholds are read from config.py for easy tuning.
+Uses:
+- Strict ReID quality gates (config.MIN_REID_AREA_RATIO, MIN_REID_SHARPNESS)
+- Embedding decimation (config.EMBED_EVERY_N)
+- Prototype + colour drift detection
+- Short‑gap IoU bonus
+- Same‑frame uniqueness constraint
 """
 
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional, Tuple
 import numpy as np
 import config
 
@@ -18,78 +17,101 @@ import config
 class GlobalIDManager:
     def __init__(self):
         self.next_id = 1
-        self.globals: Dict[int, dict] = {}  # global_id -> prototype info
-        self.local_to_global: Dict[int, int] = {}  # local_id -> global_id
-        self.local_last_seen: Dict[int, int] = {}  # local_id -> frame_idx for staleness
-        self.local_last_embed: Dict[int, int] = {}  # local_id -> last frame when embedding was updated
-
-        # Frame‑dependent parameters (set once per camera based on fps)
-        self.short_gap_frames: int = 90   # will be recalculated in reset_for_video()
+        self.globals: Dict[int, dict] = {}          # global_id -> info
+        self.local_to_global: Dict[int, int] = {}    # local_id -> global_id
+        self.local_last_seen: Dict[int, int] = {}    # local_id -> frame_idx
+        self.local_last_embed_frame: Dict[int, int] = {}  # last frame when embedding was updated
+        self.per_frame_used_globals: set = set()
+        self._fps = 30.0
 
     def reset_for_video(self, fps: float):
-        """Set time‑dependent parameters using the video's frame rate."""
-        self.fps = fps
+        self._fps = fps
         self.short_gap_frames = max(1, int(round(config.SHORT_GAP_SEC * fps)))
-        self.local_stale_frames = max(
-            self.short_gap_frames * 2,
-            int(round(config.LOCAL_STALE_SEC * fps)),
-        )
+        self.local_stale_frames = max(self.short_gap_frames * 2,
+                                      int(round(config.LOCAL_STALE_SEC * fps)))
 
-    def update(
-        self,
-        local_id: int,
-        frame_idx: int,
-        emb: np.ndarray,
-        color_sig: Dict[str, np.ndarray],
-        bbox: Tuple[int, int, int, int],
-    ) -> Tuple[int, bool, str]:
+    def new_frame(self):
+        self.per_frame_used_globals.clear()
+
+    def update(self, local_id: int, frame_idx: int,
+               emb: np.ndarray, color_sig: Dict[str, np.ndarray],
+               bbox: Tuple[int, int, int, int],
+               reid_ok: bool) -> Tuple[int, bool, str]:
         """
-        Process a new detection from a local track and return its global identity.
-
         Args:
-            local_id: ByteTrack's track ID.
-            frame_idx: Current frame number.
-            emb: L2‑normalised ReID embedding for this crop.
-            color_sig: Dict with 'upper' and 'lower' normalised LAB histograms.
-            bbox: (x1,y1,x2,y2) bounding box.
-
-        Returns:
-            global_id: The assigned global identity.
-            is_new: True if a new global ID was created.
-            reason: Description of what happened (for logging).
+            reid_ok: Whether this crop passes the strict ReID quality gates.
         """
-        # If we already have a mapping and it hasn't drifted, keep it (Pass 1)
+        # ---- If we already know this local track ----
         if local_id in self.local_to_global:
             gid = self.local_to_global[local_id]
             info = self.globals.get(gid)
-            if info is not None:
-                # Check for drift
-                if self._check_drift(gid, emb, color_sig):
+            if info is None:
+                # Global lost? remap
+                pass
+            else:
+                # Check if we should refresh the embedding (decimation)
+                should_refresh = (frame_idx - self.local_last_embed_frame.get(local_id, -10**9)
+                                  >= config.EMBED_EVERY_N and reid_ok)
+                if should_refresh:
+                    # Drift check against current global
+                    current_reid = float(np.dot(emb, info["prototype"]))
+                    current_colour = self._color_similarity(
+                        color_sig["upper"], color_sig["lower"],
+                        info["color_upper"], info["color_lower"]
+                    )
+                    if (current_reid < config.DRIFT_REID_THRESHOLD or
+                        current_colour < config.DRIFT_COLOR_THRESHOLD):
+                        # Split: create new global and reassign local to it
+                        new_gid = self._create_global(emb, color_sig, bbox, frame_idx)
+                        self.local_to_global[local_id] = new_gid
+                        self.local_last_embed_frame[local_id] = frame_idx
+                        self.local_last_seen[local_id] = frame_idx
+                        return new_gid, True, f"split from G{gid}"
+                    else:
+                        # Update existing prototype
+                        self._update_prototype(info, emb, color_sig, bbox, frame_idx)
+                else:
+                    # Not refreshing, just mark seen and update last bbox
+                    info["last_seen_frame"] = frame_idx
+                    info["last_bbox"] = bbox
+
+                self.local_last_seen[local_id] = frame_idx
+                # Same-frame uniqueness: if this global already used, force split
+                if gid in self.per_frame_used_globals:
+                    # Conflict – should not happen if mapping is consistent, but safeguard
                     new_gid = self._create_global(emb, color_sig, bbox, frame_idx)
                     self.local_to_global[local_id] = new_gid
-                    self.local_last_embed[local_id] = frame_idx
-                    self.local_last_seen[local_id] = frame_idx
-                    return new_gid, True, f"split from G{gid} due to drift"
-                else:
-                    # Update existing prototype
-                    self._update_global(info, emb, color_sig, bbox, frame_idx)
-                    self.local_last_seen[local_id] = frame_idx
-                    self.local_last_embed[local_id] = frame_idx
-                    return gid, False, f"updated G{gid}"
+                    self.local_last_embed_frame[local_id] = frame_idx
+                    return new_gid, True, f"same-frame conflict, split from G{gid}"
+                self.per_frame_used_globals.add(gid)
+                return gid, False, f"updated G{gid}"
 
-        # No prior mapping or mapping lost – search for a matching global identity
-        matched_gid = self._match_global(emb, color_sig, bbox, frame_idx, local_id)
+        # ---- No prior mapping, try to match existing global ----
+        matched_gid = self._match_global(emb, color_sig, bbox, frame_idx)
         if matched_gid is not None:
-            self.local_to_global[local_id] = matched_gid
-            self.local_last_seen[local_id] = frame_idx
-            self.local_last_embed[local_id] = frame_idx
-            return matched_gid, False, f"re‑linked to G{matched_gid}"
-        else:
-            gid = self._create_global(emb, color_sig, bbox, frame_idx)
-            self.local_to_global[local_id] = gid
-            self.local_last_seen[local_id] = frame_idx
-            self.local_last_embed[local_id] = frame_idx
-            return gid, True, f"new G{gid}"
+            # Same-frame uniqueness check
+            if matched_gid in self.per_frame_used_globals:
+                # Conflict, reject and create new
+                print(f"[Frame {frame_idx}] CONFLICT: L{local_id} wants G{matched_gid} but already used")
+                matched_gid = None
+            else:
+                self.local_to_global[local_id] = matched_gid
+                self.local_last_seen[local_id] = frame_idx
+                if reid_ok:
+                    # Update prototype with this sample
+                    self._update_prototype(self.globals[matched_gid], emb, color_sig, bbox, frame_idx)
+                    self.local_last_embed_frame[local_id] = frame_idx
+                self.per_frame_used_globals.add(matched_gid)
+                return matched_gid, False, f"re‑linked to G{matched_gid}"
+
+        # ---- No match -> new global ----
+        gid = self._create_global(emb, color_sig, bbox, frame_idx)
+        self.local_to_global[local_id] = gid
+        self.local_last_seen[local_id] = frame_idx
+        if reid_ok:
+            self.local_last_embed_frame[local_id] = frame_idx
+        self.per_frame_used_globals.add(gid)
+        return gid, True, f"new G{gid}"
 
     def _create_global(self, emb, color_sig, bbox, frame_idx) -> int:
         gid = self.next_id
@@ -104,98 +126,80 @@ class GlobalIDManager:
         }
         return gid
 
-    def _update_global(self, info, emb, color_sig, bbox, frame_idx):
+    def _update_prototype(self, info, emb, color_sig, bbox, frame_idx):
         alpha = config.PROTOTYPE_ALPHA
-        color_alpha = config.COLOR_ALPHA
-        # Update embedding prototype as moving average
+        c_alpha = config.COLOR_ALPHA
+        # Embedding
         blended = (1.0 - alpha) * info["prototype"] + alpha * emb
         info["prototype"] = blended / (np.linalg.norm(blended) + 1e-12)
-        # Update colour histograms
-        info["color_upper"] = self._blend_hist(info["color_upper"], color_sig["upper"], color_alpha)
-        info["color_lower"] = self._blend_hist(info["color_lower"], color_sig["lower"], color_alpha)
+        # Colour
+        info["color_upper"] = self._blend_hist(info["color_upper"], color_sig["upper"], c_alpha)
+        info["color_lower"] = self._blend_hist(info["color_lower"], color_sig["lower"], c_alpha)
         info["samples"] += 1
         info["last_seen_frame"] = frame_idx
         info["last_bbox"] = bbox
 
-    def _check_drift(self, gid, emb, color_sig) -> bool:
-        info = self.globals[gid]
-        reid_sim = float(np.dot(emb, info["prototype"]))
-        color_sim = self._color_similarity(
-            color_sig["upper"], color_sig["lower"],
-            info["color_upper"], info["color_lower"]
-        )
-        if reid_sim < config.DRIFT_REID_THRESHOLD or color_sim < config.DRIFT_COLOR_THRESHOLD:
-            return True
-        return False
+    def _match_global(self, emb, color_sig, bbox, frame_idx) -> Optional[int]:
+        best_gid = None
+        best_score = -1.0
+        second_score = -1.0
 
-    def _match_global(self, emb, color_sig, bbox, frame_idx, exclude_local=None) -> Optional[int]:
-        candidates = []
         for gid, info in self.globals.items():
-            # Skip if assigned to the same local track we are processing (shouldn't happen)
-            # Compute appearance similarity
-            reid_sim = float(np.dot(emb, info["prototype"]))
-            color_sim = self._color_similarity(
+            if gid in self.per_frame_used_globals:
+                continue
+            sim = float(np.dot(emb, info["prototype"]))
+            col_sim = self._color_similarity(
                 color_sig["upper"], color_sig["lower"],
                 info["color_upper"], info["color_lower"]
             )
-            if color_sim < config.COLOR_THRESHOLD:
+            if col_sim < config.COLOR_THRESHOLD:
                 continue
 
-            age_frames = frame_idx - info["last_seen_frame"]
-            if age_frames <= self.short_gap_frames:
-                # Add IoU bonus for recent tracks
+            age = frame_idx - info["last_seen_frame"]
+            if age <= self.short_gap_frames:
                 iou = self._bbox_iou(bbox, info["last_bbox"])
-                score = reid_sim + config.IOU_WEIGHT * iou
+                score = sim + config.IOU_WEIGHT * iou
                 threshold = config.SHORT_LINK_THRESHOLD
             else:
-                score = reid_sim
+                score = sim
                 threshold = config.LONG_LINK_THRESHOLD
 
             if score >= threshold:
-                candidates.append((gid, score, reid_sim, color_sim))
+                if score > best_score:
+                    second_score = best_score
+                    best_score = score
+                    best_gid = gid
+                elif score > second_score:
+                    second_score = score
 
-        if not candidates:
-            return None
-
-        candidates.sort(key=lambda x: x[1], reverse=True)
-        best = candidates[0]
-        # Ambiguity check: if second best is too close, reject
-        if len(candidates) > 1:
-            second = candidates[1]
-            if (best[1] - second[1]) < config.AMBIGUITY_MARGIN:
-                return None
-        return best[0]
+        if best_gid is not None and (best_score - second_score) >= config.AMBIGUITY_MARGIN:
+            return best_gid
+        return None
 
     def _color_similarity(self, u1, l1, u2, l2) -> float:
         up = float(np.minimum(u1, u2).sum())
         lo = float(np.minimum(l1, l2).sum())
-        return 0.4 * up + 0.6 * lo  # lower body is usually more distinctive
+        return 0.4 * up + 0.6 * lo
 
     def _bbox_iou(self, a, b) -> float:
-        x1 = max(a[0], b[0])
-        y1 = max(a[1], b[1])
-        x2 = min(a[2], b[2])
-        y2 = min(a[3], b[3])
-        inter = max(0, x2 - x1) * max(0, y2 - y1)
-        area_a = (a[2] - a[0]) * (a[3] - a[1])
-        area_b = (b[2] - b[0]) * (b[3] - b[1])
+        x1 = max(a[0], b[0]); y1 = max(a[1], b[1])
+        x2 = min(a[2], b[2]); y2 = min(a[3], b[3])
+        inter = max(0, x2-x1) * max(0, y2-y1)
+        area_a = (a[2]-a[0]) * (a[3]-a[1])
+        area_b = (b[2]-b[0]) * (b[3]-b[1])
         union = area_a + area_b - inter
-        return inter / union if union > 0 else 0.0
+        return inter/union if union>0 else 0.0
 
     def _blend_hist(self, a, b, alpha):
-        mixed = (1.0 - alpha) * a + alpha * b
+        mixed = (1.0 - alpha)*a + alpha*b
         s = mixed.sum()
-        if s > 0:
-            mixed /= s
+        if s>0: mixed /= s
         return mixed
 
-    def cleanup_stale_local_ids(self, frame_idx):
-        """Remove local IDs not seen for a long time to prevent memory growth."""
-        stale = [
-            lid for lid, last_seen in self.local_last_seen.items()
-            if frame_idx - last_seen > self.local_stale_frames
-        ]
+    def cleanup_stale(self, frame_idx):
+        stale = [lid for lid, last in self.local_last_seen.items()
+                 if frame_idx - last > self.local_stale_frames]
         for lid in stale:
             self.local_last_seen.pop(lid, None)
             self.local_to_global.pop(lid, None)
-            self.local_last_embed.pop(lid, None)
+            self.local_last_embed_frame.pop(lid, None)

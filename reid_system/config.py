@@ -70,3 +70,35 @@ DRIFT_COLOR_THRESHOLD = 0.24
 PROTOTYPE_ALPHA = 0.20           # embedding update rate
 COLOR_ALPHA = 0.12               # colour histogram update rate
 LOCAL_STALE_SEC = 8.0            # forget local->global mapping after this time
+
+
+
+# ---------------------
+# REID QUALITY GATES (separate from saving)
+# ---------------------
+MIN_REID_WIDTH = 10
+MIN_REID_HEIGHT = 20
+MIN_REID_AREA_RATIO = 0.0012      # stricter than saving
+MIN_REID_SHARPNESS = 12.0         # stricter than saving
+
+# ---------------------
+# EMBEDDING DECIMATION
+# ---------------------
+EMBED_EVERY_N = 3                 # refresh embedding only every N frames per track
+
+# ---------------------
+# GLOBAL ID LINKING (same as original)
+# ---------------------
+SHORT_GAP_SEC = 3.0
+SHORT_LINK_THRESHOLD = 0.74
+LONG_LINK_THRESHOLD = 0.82
+IOU_WEIGHT = 0.12
+COLOR_THRESHOLD = 0.35
+AMBIGUITY_MARGIN = 0.03
+DRIFT_REID_THRESHOLD = 0.62
+DRIFT_COLOR_THRESHOLD = 0.24
+PROTOTYPE_ALPHA = 0.20
+COLOR_ALPHA = 0.12
+LOCAL_STALE_SEC = 8.0
+INCLUDE_LOCAL_ID_ZERO = False    # we ignore ID 0 by 
+
