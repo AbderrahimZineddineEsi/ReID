@@ -1,0 +1,1120 @@
+
+============================================================
+Processing: person_001
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_001
+============================================================
+
+============================================================
+Folder: person_001
+============================================================
+Total images: 374
+Distinct local tracks: 1
+
+Track L9: 374 images, mean similarity to its own prototype: 0.949 (min: 0.866, max: 0.977)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.949 (min: 0.866, max: 0.977)
+Track similarity to overall folder prototype:
+  L9: 1.000
+
+Frame overlap between tracks:
+  L9: frames 1-377 (count 374)
+
+--- Finished person_001 (Return Code: 0) ---
+
+============================================================
+Processing: person_002
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_002
+============================================================
+
+============================================================
+Folder: person_002
+============================================================
+Total images: 358
+Distinct local tracks: 2
+
+Track L11: 139 images, mean similarity to its own prototype: 0.908 (min: 0.814, max: 0.969)
+Track L121: 219 images, mean similarity to its own prototype: 0.956 (min: 0.896, max: 0.976)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L11 vs L121        0.952     0.810  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.927 (min: 0.764, max: 0.971)
+Track similarity to overall folder prototype:
+  L11: 0.981
+  L121: 0.993
+
+Frame overlap between tracks:
+  L11: frames 1-149 (count 139)
+  L121: frames 161-379 (count 219)
+
+--- Finished person_002 (Return Code: 0) ---
+
+============================================================
+Processing: person_003
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_003
+============================================================
+
+============================================================
+Folder: person_003
+============================================================
+Total images: 342
+Distinct local tracks: 2
+
+Track L6: 172 images, mean similarity to its own prototype: 0.880 (min: 0.676, max: 0.941)
+Track L145: 170 images, mean similarity to its own prototype: 0.914 (min: 0.824, max: 0.963)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L6 vs L145        0.887     0.601  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.871 (min: 0.697, max: 0.936)
+Track similarity to overall folder prototype:
+  L6: 0.970
+  L145: 0.972
+
+Frame overlap between tracks:
+  L6: frames 1-173 (count 172)
+  L145: frames 210-379 (count 170)
+
+--- Finished person_003 (Return Code: 0) ---
+
+============================================================
+Processing: person_004
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_004
+============================================================
+
+============================================================
+Folder: person_004
+============================================================
+Total images: 333
+Distinct local tracks: 1
+
+Track L45: 333 images, mean similarity to its own prototype: 0.893 (min: 0.742, max: 0.950)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.893 (min: 0.742, max: 0.950)
+Track similarity to overall folder prototype:
+  L45: 1.000
+
+Frame overlap between tracks:
+  L45: frames 47-379 (count 333)
+
+--- Finished person_004 (Return Code: 0) ---
+
+============================================================
+Processing: person_005
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_005
+============================================================
+
+============================================================
+Folder: person_005
+============================================================
+Total images: 329
+Distinct local tracks: 1
+
+Track L30: 329 images, mean similarity to its own prototype: 0.888 (min: 0.680, max: 0.946)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.888 (min: 0.680, max: 0.946)
+Track similarity to overall folder prototype:
+  L30: 1.000
+
+Frame overlap between tracks:
+  L30: frames 25-353 (count 329)
+
+--- Finished person_005 (Return Code: 0) ---
+
+============================================================
+Processing: person_006
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_006
+============================================================
+
+============================================================
+Folder: person_006
+============================================================
+Total images: 310
+Distinct local tracks: 1
+
+Track L1: 310 images, mean similarity to its own prototype: 0.905 (min: 0.785, max: 0.960)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.905 (min: 0.785, max: 0.960)
+Track similarity to overall folder prototype:
+  L1: 1.000
+
+Frame overlap between tracks:
+  L1: frames 1-329 (count 310)
+
+--- Finished person_006 (Return Code: 0) ---
+
+============================================================
+Processing: person_007
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_007
+============================================================
+
+============================================================
+Folder: person_007
+============================================================
+Total images: 257
+Distinct local tracks: 1
+
+Track L97: 257 images, mean similarity to its own prototype: 0.885 (min: 0.735, max: 0.944)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.885 (min: 0.735, max: 0.944)
+Track similarity to overall folder prototype:
+  L97: 1.000
+
+Frame overlap between tracks:
+  L97: frames 113-379 (count 257)
+
+--- Finished person_007 (Return Code: 0) ---
+
+============================================================
+Processing: person_008
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_008
+============================================================
+
+============================================================
+Folder: person_008
+============================================================
+Total images: 254
+Distinct local tracks: 1
+
+Track L2: 254 images, mean similarity to its own prototype: 0.848 (min: 0.737, max: 0.928)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.848 (min: 0.737, max: 0.928)
+Track similarity to overall folder prototype:
+  L2: 1.000
+
+Frame overlap between tracks:
+  L2: frames 1-258 (count 254)
+
+--- Finished person_008 (Return Code: 0) ---
+
+============================================================
+Processing: person_009
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_009
+============================================================
+
+============================================================
+Folder: person_009
+============================================================
+Total images: 253
+Distinct local tracks: 1
+
+Track L10: 253 images, mean similarity to its own prototype: 0.874 (min: 0.663, max: 0.947)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.874 (min: 0.663, max: 0.947)
+Track similarity to overall folder prototype:
+  L10: 1.000
+
+Frame overlap between tracks:
+  L10: frames 1-258 (count 253)
+
+--- Finished person_009 (Return Code: 0) ---
+
+============================================================
+Processing: person_010
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_010
+============================================================
+
+============================================================
+Folder: person_010
+============================================================
+Total images: 247
+Distinct local tracks: 2
+
+Track L3: 141 images, mean similarity to its own prototype: 0.898 (min: 0.731, max: 0.947)
+Track L174: 106 images, mean similarity to its own prototype: 0.923 (min: 0.824, max: 0.958)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L3 vs L174        0.897     0.688  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.885 (min: 0.702, max: 0.937)
+Track similarity to overall folder prototype:
+  L3: 0.980
+  L174: 0.967
+
+Frame overlap between tracks:
+  L3: frames 1-141 (count 141)
+  L174: frames 256-379 (count 106)
+
+--- Finished person_010 (Return Code: 0) ---
+
+============================================================
+Processing: person_011
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_011
+============================================================
+
+============================================================
+Folder: person_011
+============================================================
+Total images: 229
+Distinct local tracks: 1
+
+Track L114: 229 images, mean similarity to its own prototype: 0.878 (min: 0.689, max: 0.940)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.878 (min: 0.689, max: 0.940)
+Track similarity to overall folder prototype:
+  L114: 1.000
+
+Frame overlap between tracks:
+  L114: frames 151-379 (count 229)
+
+--- Finished person_011 (Return Code: 0) ---
+
+============================================================
+Processing: person_012
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_012
+============================================================
+
+============================================================
+Folder: person_012
+============================================================
+Total images: 221
+Distinct local tracks: 1
+
+Track L119: 221 images, mean similarity to its own prototype: 0.897 (min: 0.758, max: 0.952)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.897 (min: 0.758, max: 0.952)
+Track similarity to overall folder prototype:
+  L119: 1.000
+
+Frame overlap between tracks:
+  L119: frames 159-379 (count 221)
+
+--- Finished person_012 (Return Code: 0) ---
+
+============================================================
+Processing: person_013
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_013
+============================================================
+
+============================================================
+Folder: person_013
+============================================================
+Total images: 204
+Distinct local tracks: 2
+
+Track L25: 36 images, mean similarity to its own prototype: 0.908 (min: 0.864, max: 0.946)
+Track L61: 168 images, mean similarity to its own prototype: 0.874 (min: 0.618, max: 0.935)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L25 vs L61        0.928     0.692  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.870 (min: 0.614, max: 0.938)
+Track similarity to overall folder prototype:
+  L25: 0.951
+  L61: 0.998
+
+Frame overlap between tracks:
+  L25: frames 15-50 (count 36)
+  L61: frames 67-235 (count 168)
+
+--- Finished person_013 (Return Code: 0) ---
+
+============================================================
+Processing: person_014
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_014
+============================================================
+
+============================================================
+Folder: person_014
+============================================================
+Total images: 202
+Distinct local tracks: 1
+
+Track L4: 202 images, mean similarity to its own prototype: 0.904 (min: 0.789, max: 0.951)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.904 (min: 0.789, max: 0.951)
+Track similarity to overall folder prototype:
+  L4: 1.000
+
+Frame overlap between tracks:
+  L4: frames 1-202 (count 202)
+
+--- Finished person_014 (Return Code: 0) ---
+
+============================================================
+Processing: person_015
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_015
+============================================================
+
+============================================================
+Folder: person_015
+============================================================
+Total images: 197
+Distinct local tracks: 1
+
+Track L109: 197 images, mean similarity to its own prototype: 0.898 (min: 0.704, max: 0.945)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.898 (min: 0.704, max: 0.945)
+Track similarity to overall folder prototype:
+  L109: 1.000
+
+Frame overlap between tracks:
+  L109: frames 144-345 (count 197)
+
+--- Finished person_015 (Return Code: 0) ---
+
+============================================================
+Processing: person_016
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_016
+============================================================
+
+============================================================
+Folder: person_016
+============================================================
+Total images: 193
+Distinct local tracks: 1
+
+Track L5: 193 images, mean similarity to its own prototype: 0.873 (min: 0.725, max: 0.931)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.873 (min: 0.725, max: 0.931)
+Track similarity to overall folder prototype:
+  L5: 1.000
+
+Frame overlap between tracks:
+  L5: frames 1-193 (count 193)
+
+--- Finished person_016 (Return Code: 0) ---
+
+============================================================
+Processing: person_017
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_017
+============================================================
+
+============================================================
+Folder: person_017
+============================================================
+Total images: 179
+Distinct local tracks: 1
+
+Track L141: 179 images, mean similarity to its own prototype: 0.871 (min: 0.709, max: 0.940)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.871 (min: 0.709, max: 0.940)
+Track similarity to overall folder prototype:
+  L141: 1.000
+
+Frame overlap between tracks:
+  L141: frames 200-379 (count 179)
+
+--- Finished person_017 (Return Code: 0) ---
+
+============================================================
+Processing: person_018
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_018
+============================================================
+
+============================================================
+Folder: person_018
+============================================================
+Total images: 166
+Distinct local tracks: 2
+
+Track L54: 39 images, mean similarity to its own prototype: 0.918 (min: 0.846, max: 0.953)
+Track L113: 127 images, mean similarity to its own prototype: 0.886 (min: 0.621, max: 0.940)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L54 vs L113        0.918     0.778  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.880 (min: 0.626, max: 0.933)
+Track similarity to overall folder prototype:
+  L54: 0.952
+  L113: 0.995
+
+Frame overlap between tracks:
+  L54: frames 61-99 (count 39)
+  L113: frames 149-275 (count 127)
+
+--- Finished person_018 (Return Code: 0) ---
+
+============================================================
+Processing: person_019
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_019
+============================================================
+
+============================================================
+Folder: person_019
+============================================================
+Total images: 116
+Distinct local tracks: 1
+
+Track L175: 116 images, mean similarity to its own prototype: 0.893 (min: 0.763, max: 0.946)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.893 (min: 0.763, max: 0.946)
+Track similarity to overall folder prototype:
+  L175: 1.000
+
+Frame overlap between tracks:
+  L175: frames 257-379 (count 116)
+
+--- Finished person_019 (Return Code: 0) ---
+
+============================================================
+Processing: person_020
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_020
+============================================================
+
+============================================================
+Folder: person_020
+============================================================
+Total images: 116
+Distinct local tracks: 2
+
+Track L149: 17 images, mean similarity to its own prototype: 0.927 (min: 0.847, max: 0.958)
+Track L189: 99 images, mean similarity to its own prototype: 0.913 (min: 0.765, max: 0.960)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L149 vs L189        0.853     0.555  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.898 (min: 0.772, max: 0.955)
+Track similarity to overall folder prototype:
+  L149: 0.892
+  L189: 0.997
+
+Frame overlap between tracks:
+  L149: frames 204-223 (count 17)
+  L189: frames 280-379 (count 99)
+
+--- Finished person_020 (Return Code: 0) ---
+
+============================================================
+Processing: person_021
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_021
+============================================================
+
+============================================================
+Folder: person_021
+============================================================
+Total images: 96
+Distinct local tracks: 1
+
+Track L7: 96 images, mean similarity to its own prototype: 0.914 (min: 0.816, max: 0.953)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.914 (min: 0.816, max: 0.953)
+Track similarity to overall folder prototype:
+  L7: 1.000
+
+Frame overlap between tracks:
+  L7: frames 1-98 (count 96)
+
+--- Finished person_021 (Return Code: 0) ---
+
+============================================================
+Processing: person_022
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_022
+============================================================
+
+============================================================
+Folder: person_022
+============================================================
+Total images: 93
+Distinct local tracks: 1
+
+Track L190: 93 images, mean similarity to its own prototype: 0.868 (min: 0.638, max: 0.918)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.868 (min: 0.638, max: 0.918)
+Track similarity to overall folder prototype:
+  L190: 1.000
+
+Frame overlap between tracks:
+  L190: frames 286-379 (count 93)
+
+--- Finished person_022 (Return Code: 0) ---
+
+============================================================
+Processing: person_023
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_023
+============================================================
+
+============================================================
+Folder: person_023
+============================================================
+Total images: 90
+Distinct local tracks: 1
+
+Track L191: 90 images, mean similarity to its own prototype: 0.934 (min: 0.812, max: 0.966)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.934 (min: 0.812, max: 0.966)
+Track similarity to overall folder prototype:
+  L191: 1.000
+
+Frame overlap between tracks:
+  L191: frames 290-379 (count 90)
+
+--- Finished person_023 (Return Code: 0) ---
+
+============================================================
+Processing: person_024
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_024
+============================================================
+
+============================================================
+Folder: person_024
+============================================================
+Total images: 65
+Distinct local tracks: 3
+
+Track L64: 17 images, mean similarity to its own prototype: 0.973 (min: 0.930, max: 0.986)
+Track L82: 44 images, mean similarity to its own prototype: 0.931 (min: 0.858, max: 0.965)
+Track L147: 4 images, mean similarity to its own prototype: 0.963 (min: 0.912, max: 0.981)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L64 vs L82        0.869     0.712  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+L64 vs L147        0.831     0.612  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+L82 vs L147        0.949     0.813  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.917 (min: 0.835, max: 0.969)
+Track similarity to overall folder prototype:
+  L64: 0.929
+  L82: 0.990
+  L147: 0.948
+
+Frame overlap between tracks:
+  L64: frames 79-95 (count 17)
+  L82: frames 106-161 (count 44)
+  L147: frames 200-209 (count 4)
+
+--- Finished person_024 (Return Code: 0) ---
+
+============================================================
+Processing: person_025
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_025
+============================================================
+
+============================================================
+Folder: person_025
+============================================================
+Total images: 61
+Distinct local tracks: 1
+
+Track L8: 61 images, mean similarity to its own prototype: 0.892 (min: 0.823, max: 0.942)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.892 (min: 0.823, max: 0.942)
+Track similarity to overall folder prototype:
+  L8: 1.000
+
+Frame overlap between tracks:
+  L8: frames 1-61 (count 61)
+
+--- Finished person_025 (Return Code: 0) ---
+
+============================================================
+Processing: person_026
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_026
+============================================================
+
+============================================================
+Folder: person_026
+============================================================
+Total images: 48
+Distinct local tracks: 3
+
+Track L156: 4 images, mean similarity to its own prototype: 0.975 (min: 0.964, max: 0.982)
+Track L159: 32 images, mean similarity to its own prototype: 0.937 (min: 0.855, max: 0.968)
+Track L182: 12 images, mean similarity to its own prototype: 0.961 (min: 0.935, max: 0.978)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L156 vs L159        0.941     0.767  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+L156 vs L182        0.840     0.687  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+L159 vs L182        0.910     0.825  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.925 (min: 0.867, max: 0.964)
+Track similarity to overall folder prototype:
+  L156: 0.941
+  L159: 0.994
+  L182: 0.948
+
+Frame overlap between tracks:
+  L156: frames 222-225 (count 4)
+  L159: frames 226-257 (count 32)
+  L182: frames 272-283 (count 12)
+
+--- Finished person_026 (Return Code: 0) ---
+
+============================================================
+Processing: person_027
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_027
+============================================================
+
+============================================================
+Folder: person_027
+============================================================
+Total images: 45
+Distinct local tracks: 2
+
+Track L46: 42 images, mean similarity to its own prototype: 0.936 (min: 0.821, max: 0.972)
+Track L229: 3 images, mean similarity to its own prototype: 0.992 (min: 0.988, max: 0.995)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L46 vs L229        0.925     0.749  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.935 (min: 0.821, max: 0.971)
+Track similarity to overall folder prototype:
+  L46: 1.000
+  L229: 0.935
+
+Frame overlap between tracks:
+  L46: frames 48-92 (count 42)
+  L229: frames 375-377 (count 3)
+
+--- Finished person_027 (Return Code: 0) ---
+
+============================================================
+Processing: person_028
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_028
+============================================================
+
+============================================================
+Folder: person_028
+============================================================
+Total images: 41
+Distinct local tracks: 1
+
+Track L207: 41 images, mean similarity to its own prototype: 0.959 (min: 0.927, max: 0.973)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.959 (min: 0.927, max: 0.973)
+Track similarity to overall folder prototype:
+  L207: 1.000
+
+Frame overlap between tracks:
+  L207: frames 339-379 (count 41)
+
+--- Finished person_028 (Return Code: 0) ---
+
+============================================================
+Processing: person_029
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_029
+============================================================
+
+============================================================
+Folder: person_029
+============================================================
+Total images: 25
+Distinct local tracks: 1
+
+Track L153: 25 images, mean similarity to its own prototype: 0.965 (min: 0.939, max: 0.981)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.965 (min: 0.939, max: 0.981)
+Track similarity to overall folder prototype:
+  L153: 1.000
+
+Frame overlap between tracks:
+  L153: frames 219-265 (count 25)
+
+--- Finished person_029 (Return Code: 0) ---
+
+============================================================
+Processing: person_030
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_030
+============================================================
+
+============================================================
+Folder: person_030
+============================================================
+Total images: 15
+Distinct local tracks: 2
+
+Track L52: 8 images, mean similarity to its own prototype: 0.990 (min: 0.989, max: 0.993)
+Track L131: 7 images, mean similarity to its own prototype: 0.989 (min: 0.986, max: 0.991)
+
+Intra‑folder track similarity analysis (would they be merged?):
+Track pair      ReID sim Color sim        Thresholds (ReID/Color)              Verdict
+--------------------------------------------------------------------------------
+L52 vs L131        0.990     0.916  ReID ≥ 0.72, Color ≥ 0.28        MERGED
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.987 (min: 0.982, max: 0.990)
+Track similarity to overall folder prototype:
+  L52: 0.998
+  L131: 0.997
+
+Frame overlap between tracks:
+  L52: frames 57-69 (count 8)
+  L131: frames 180-186 (count 7)
+
+--- Finished person_030 (Return Code: 0) ---
+
+============================================================
+Processing: person_031
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_031
+============================================================
+
+============================================================
+Folder: person_031
+============================================================
+Total images: 14
+Distinct local tracks: 1
+
+Track L63: 14 images, mean similarity to its own prototype: 0.854 (min: 0.753, max: 0.910)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.854 (min: 0.753, max: 0.910)
+Track similarity to overall folder prototype:
+  L63: 1.000
+
+Frame overlap between tracks:
+  L63: frames 73-86 (count 14)
+
+--- Finished person_031 (Return Code: 0) ---
+
+============================================================
+Processing: person_032
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_032
+============================================================
+
+============================================================
+Folder: person_032
+============================================================
+Total images: 7
+Distinct local tracks: 1
+
+Track L125: 7 images, mean similarity to its own prototype: 0.909 (min: 0.886, max: 0.924)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.909 (min: 0.886, max: 0.924)
+Track similarity to overall folder prototype:
+  L125: 1.000
+
+Frame overlap between tracks:
+  L125: frames 165-177 (count 7)
+
+--- Finished person_032 (Return Code: 0) ---
+
+============================================================
+Processing: person_033
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_033
+============================================================
+
+============================================================
+Folder: person_033
+============================================================
+Total images: 7
+Distinct local tracks: 1
+
+Track L143: 7 images, mean similarity to its own prototype: 0.943 (min: 0.913, max: 0.964)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.943 (min: 0.913, max: 0.964)
+Track similarity to overall folder prototype:
+  L143: 1.000
+
+Frame overlap between tracks:
+  L143: frames 193-199 (count 7)
+
+--- Finished person_033 (Return Code: 0) ---
+
+============================================================
+Processing: person_034
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_034
+============================================================
+
+============================================================
+Folder: person_034
+============================================================
+Total images: 6
+Distinct local tracks: 1
+
+Track L225: 6 images, mean similarity to its own prototype: 0.948 (min: 0.902, max: 0.968)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.948 (min: 0.902, max: 0.968)
+Track similarity to overall folder prototype:
+  L225: 1.000
+
+Frame overlap between tracks:
+  L225: frames 373-379 (count 6)
+
+--- Finished person_034 (Return Code: 0) ---
+
+============================================================
+Processing: person_035
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_035
+============================================================
+
+============================================================
+Folder: person_035
+============================================================
+Total images: 5
+Distinct local tracks: 1
+
+Track L88: 5 images, mean similarity to its own prototype: 0.956 (min: 0.940, max: 0.966)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.956 (min: 0.940, max: 0.966)
+Track similarity to overall folder prototype:
+  L88: 1.000
+
+Frame overlap between tracks:
+  L88: frames 109-113 (count 5)
+
+--- Finished person_035 (Return Code: 0) ---
+
+============================================================
+Processing: person_036
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_036
+============================================================
+
+============================================================
+Folder: person_036
+============================================================
+Total images: 4
+Distinct local tracks: 1
+
+Track L141: 4 images, mean similarity to its own prototype: 0.959 (min: 0.954, max: 0.964)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.959 (min: 0.954, max: 0.964)
+Track similarity to overall folder prototype:
+  L141: 1.000
+
+Frame overlap between tracks:
+  L141: frames 190-193 (count 4)
+
+--- Finished person_036 (Return Code: 0) ---
+
+============================================================
+Processing: person_037
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_037
+============================================================
+
+============================================================
+Folder: person_037
+============================================================
+Total images: 4
+Distinct local tracks: 1
+
+Track L90: 4 images, mean similarity to its own prototype: 0.970 (min: 0.960, max: 0.979)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.970 (min: 0.960, max: 0.979)
+Track similarity to overall folder prototype:
+  L90: 1.000
+
+Frame overlap between tracks:
+  L90: frames 110-113 (count 4)
+
+--- Finished person_037 (Return Code: 0) ---
+
+============================================================
+Processing: person_038
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_038
+============================================================
+
+============================================================
+Folder: person_038
+============================================================
+Total images: 4
+Distinct local tracks: 1
+
+Track L219: 4 images, mean similarity to its own prototype: 0.954 (min: 0.945, max: 0.960)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.954 (min: 0.945, max: 0.960)
+Track similarity to overall folder prototype:
+  L219: 1.000
+
+Frame overlap between tracks:
+  L219: frames 366-369 (count 4)
+
+--- Finished person_038 (Return Code: 0) ---
+
+============================================================
+Processing: person_039
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_039
+============================================================
+
+============================================================
+Folder: person_039
+============================================================
+Total images: 3
+Distinct local tracks: 1
+
+Track L136: 3 images, mean similarity to its own prototype: 0.959 (min: 0.948, max: 0.967)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.959 (min: 0.948, max: 0.967)
+Track similarity to overall folder prototype:
+  L136: 1.000
+
+Frame overlap between tracks:
+  L136: frames 186-188 (count 3)
+
+--- Finished person_039 (Return Code: 0) ---
+
+============================================================
+Processing: person_040
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_040
+============================================================
+
+============================================================
+Folder: person_040
+============================================================
+Total images: 3
+Distinct local tracks: 1
+
+Track L127: 3 images, mean similarity to its own prototype: 0.942 (min: 0.928, max: 0.958)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.942 (min: 0.928, max: 0.958)
+Track similarity to overall folder prototype:
+  L127: 1.000
+
+Frame overlap between tracks:
+  L127: frames 172-174 (count 3)
+
+--- Finished person_040 (Return Code: 0) ---
+
+============================================================
+Processing: person_041
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_041
+============================================================
+
+============================================================
+Folder: person_041
+============================================================
+Total images: 3
+Distinct local tracks: 1
+
+Track L157: 3 images, mean similarity to its own prototype: 0.960 (min: 0.954, max: 0.967)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.960 (min: 0.954, max: 0.967)
+Track similarity to overall folder prototype:
+  L157: 1.000
+
+Frame overlap between tracks:
+  L157: frames 224-227 (count 3)
+
+--- Finished person_041 (Return Code: 0) ---
+
+============================================================
+Processing: person_042
+Command: /home/zeno/Documents/esi/the-project/.venv/bin/python reid_system/experiments/diagnose_folder_deep.py --input reid_system/outputs/refined_v2/person_042
+============================================================
+
+============================================================
+Folder: person_042
+============================================================
+Total images: 3
+Distinct local tracks: 1
+
+Track L188: 3 images, mean similarity to its own prototype: 0.941 (min: 0.905, max: 0.966)
+
+Only one track – no intra‑folder merging decisions needed.
+
+Folder-level embedding consistency:
+  All images vs folder prototype: mean 0.941 (min: 0.905, max: 0.966)
+Track similarity to overall folder prototype:
+  L188: 1.000
+
+Frame overlap between tracks:
+  L188: frames 280-283 (count 3)
+
+--- Finished person_042 (Return Code: 0) ---

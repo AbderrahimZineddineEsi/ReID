@@ -4,9 +4,9 @@ import subprocess
 from pathlib import Path
 
 # --- Configuration ---
-BASE_DIR = Path("reid_system/outputs/step2_global_crops_fixed")
+BASE_DIR = Path("reid_system/outputs/refined_v2_2")
 SCRIPT_TO_RUN = "reid_system/experiments/diagnose_folder_deep.py"
-OUTPUT_LOG_FILE = "all_diagnostics_results.txt"
+OUTPUT_LOG_FILE = "refine_v2_2_diagnostics_results.txt"
 # ---------------------
 
 def main():
