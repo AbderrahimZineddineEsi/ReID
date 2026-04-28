@@ -27,7 +27,7 @@ FACE_MODEL = str(MODELS_DIR / "arcface.onnx")        # Placeholder for later
 # ---------------------
 # DETECTION & TRACKING
 # ---------------------
-DETECTION_CONFIDENCE = 0.15          # Minimum confidence for person detection
+DETECTION_CONFIDENCE = 0.4          # Minimum confidence for person detection
 TRACKER_CONFIG = "bytetrack.yaml"     # BOT‑SORT config file (uses ultralytics default)
 DEVICE = "cuda"                     # Use 'cuda' if GPU available, else 'cpu'
 IMG_SIZE = (640, 640)               # Inference size (smaller = faster, less accurate)
@@ -125,6 +125,6 @@ MIN_FOLDER_IMAGES_FINAL = 18          # drop folders with fewer images after ref
 
 
 # Large folder bonus
-LARGE_FOLDER_SIZE = 100             # clusters with ≥ this many images get relaxed thresholds
-LARGE_MERGE_REID_THRESHOLD = 0.85   # lower than normal 0.85? You later set normal to 0.90? Adjust as you like
+LARGE_FOLDER_SIZE = 200             # clusters with ≥ this many images get relaxed thresholds
+LARGE_MERGE_REID_THRESHOLD = 0.87   # lower than normal 0.85? You later set normal to 0.90? Adjust as you like
 LARGE_MERGE_COLOR_THRESHOLD = 0.65  # optional relaxed colour, but keep same if it works

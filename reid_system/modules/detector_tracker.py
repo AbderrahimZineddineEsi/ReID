@@ -56,9 +56,20 @@ class YOLOTracker:
         """
         self.device = device
 
-        # Load YOLO model (if cuda is requested but unavailable, ultralytics will fallback to cpu)
+        # Load YOLO model and handle CUDA init failures by falling back to CPU.
         self.model = YOLO(model_path)
-        self.model.to(device)
+        if str(device).startswith("cuda"):
+            if not torch.cuda.is_available():
+                print("WARNING: CUDA not available; using CPU instead.")
+                self.device = "cpu"
+            else:
+                try:
+                    self.model.to(device)
+                except RuntimeError as exc:
+                    print(f"WARNING: CUDA init failed ({exc}); using CPU instead.")
+                    self.device = "cpu"
+        if self.device == "cpu":
+            self.model.to(self.device)
 
         # Store parameters for the track() call
         self.tracker_config = tracker
