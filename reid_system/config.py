@@ -27,7 +27,7 @@ FACE_MODEL = str(MODELS_DIR / "arcface.onnx")        # Placeholder for later
 # ---------------------
 # DETECTION & TRACKING
 # ---------------------
-DETECTION_CONFIDENCE = 0.15          # Minimum confidence for person detection
+DETECTION_CONFIDENCE = 0.4          # Minimum confidence for person detection
 TRACKER_CONFIG = "bytetrack.yaml"     # BOT‑SORT config file (uses ultralytics default)
 DEVICE = "cuda"                     # Use 'cuda' if GPU available, else 'cpu'
 IMG_SIZE = (640, 640)               # Inference size (smaller = faster, less accurate)
@@ -102,3 +102,29 @@ COLOR_ALPHA = 0.12
 LOCAL_STALE_SEC = 8.0
 INCLUDE_LOCAL_ID_ZERO = False    # we ignore ID 0 by 
 
+# ---------------------
+# OFFLINE REFINEMENT V2 (Pass 2)
+# ---------------------
+# Stage A – extra quality filter
+REFINE_MIN_REID_AREA_RATIO = 0.0012   # stricter than saving
+REFINE_MIN_REID_SHARPNESS = 12.0      # stricter than saving
+REFINE_MAX_ASPECT_RATIO = 4.0         # reject crops taller than 3.5× wide (optional, 0 to disable)
+
+# Stage B – intra-folder
+MIN_TRACK_SIZE = 18                  # ignore tracks smaller than this
+SPLIT_REID_THRESHOLD = 0.90           # below this → different person
+SPLIT_COLOR_THRESHOLD = 0.65
+
+# Stage C – cross-folder merging
+MERGE_REID_THRESHOLD = 0.90
+MERGE_COLOR_THRESHOLD = 0.65
+MERGE_COLOR_WEIGHT = 0.20             # contribution of colour to merge score
+COHERENCE_MIN = 0.80                  # cluster must have mean self-similarity ≥ this
+MAX_SAME_FRAME_OVERLAP = 3            # always 0
+MIN_FOLDER_IMAGES_FINAL = 18          # drop folders with fewer images after refinement
+
+
+# Large folder bonus
+LARGE_FOLDER_SIZE = 200             # clusters with ≥ this many images get relaxed thresholds
+LARGE_MERGE_REID_THRESHOLD = 0.85   # lower than normal 0.85? You later set normal to 0.90? Adjust as you like
+LARGE_MERGE_COLOR_THRESHOLD = 0.65  # optional relaxed colour, but keep same if it works

@@ -115,6 +115,9 @@ def analyze_folder(folder_path, sess, iname):
         print("Only one track – no intra‑folder merging decisions needed.")
     else:
         print("Intra‑folder track similarity analysis (would they be merged?):")
+        split_reid_thresh = config.SPLIT_REID_THRESHOLD
+        split_color_thresh = config.SPLIT_COLOR_THRESHOLD
+        print(f"Using config thresholds: SPLIT_REID_THRESHOLD={split_reid_thresh}, SPLIT_COLOR_THRESHOLD={split_color_thresh}")
         print(f"{'Track pair':<15s} {'ReID sim':>8s} {'Color sim':>8s} {'Thresholds (ReID/Color)':>30s} {'Verdict':>20s}")
         print("-" * 80)
         for i in range(len(track_ids)):
@@ -124,18 +127,10 @@ def analyze_folder(folder_path, sess, iname):
                 emb2, u2, l2 = track_protos[tid2]
                 reid = float(np.dot(emb1, emb2))
                 col = color_similarity(u1, l1, u2, l2)
-                # The thresholds for intra‑folder merging come from the offline script, but here we use the step2 logic?
-                # In step2 there's no intra-folder splitting; it works frame by frame online.
-                # But the offline second pass uses split_reid_threshold and split_color_threshold.
-                # We'll display the offline thresholds for reference (default from config or the command-line script).
-                # Since config doesn't have them, we'll note that they are set later.
-                # We'll just display similarity and note that if below a typical offline threshold (e.g., 0.72 reid, 0.28 color) they'd be split.
-                typical_reid_thresh = 0.72  # common split threshold
-                typical_color_thresh = 0.28
-                merged = (reid >= typical_reid_thresh and col >= typical_color_thresh)
+                merged = (reid >= split_reid_thresh and col >= split_color_thresh)
                 verdict = "MERGED" if merged else "SPLIT"
                 print(f"L{tid1} vs L{tid2}     {reid:8.3f}  {col:8.3f}  "
-                      f"ReID ≥ {typical_reid_thresh}, Color ≥ {typical_color_thresh}        {verdict}")
+                      f"ReID ≥ {split_reid_thresh}, Color ≥ {split_color_thresh}        {verdict}")
 
     print()
     # Overall folder prototype (average of all images)

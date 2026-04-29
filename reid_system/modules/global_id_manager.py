@@ -41,6 +41,25 @@ class GlobalIDManager:
         Args:
             reid_ok: Whether this crop passes the strict ReID quality gates.
         """
+        # --- strict gating: never match without valid embeddings ---
+        if not reid_ok or emb is None or color_sig is None:
+            if local_id in self.local_to_global:
+                gid = self.local_to_global[local_id]
+                info = self.globals.get(gid)
+                if info:
+                    info["last_seen_frame"] = frame_idx
+                    info["last_bbox"] = bbox
+                self.local_last_seen[local_id] = frame_idx
+                self.per_frame_used_globals.add(gid)
+                return gid, False, "updated without reid"
+
+            # new local with no reid => create stub global
+            gid = self._create_global(None, None, bbox, frame_idx)
+            self.local_to_global[local_id] = gid
+            self.local_last_seen[local_id] = frame_idx
+            self.per_frame_used_globals.add(gid)
+            return gid, True, "new Gx (no reid)"
+
         # ---- If we already know this local track ----
         if local_id in self.local_to_global:
             gid = self.local_to_global[local_id]
@@ -117,16 +136,24 @@ class GlobalIDManager:
         gid = self.next_id
         self.next_id += 1
         self.globals[gid] = {
-            "prototype": emb.copy(),
-            "color_upper": color_sig["upper"].copy(),
-            "color_lower": color_sig["lower"].copy(),
-            "samples": 1,
+            "prototype": emb.copy() if emb is not None else None,
+            "color_upper": color_sig["upper"].copy() if color_sig else None,
+            "color_lower": color_sig["lower"].copy() if color_sig else None,
+            "samples": 1 if emb is not None else 0,
             "last_seen_frame": frame_idx,
             "last_bbox": bbox,
         }
         return gid
 
     def _update_prototype(self, info, emb, color_sig, bbox, frame_idx):
+        if info["prototype"] is None:
+            info["prototype"] = emb.copy()
+            info["color_upper"] = color_sig["upper"].copy()
+            info["color_lower"] = color_sig["lower"].copy()
+            info["samples"] = 1
+            info["last_seen_frame"] = frame_idx
+            info["last_bbox"] = bbox
+            return
         alpha = config.PROTOTYPE_ALPHA
         c_alpha = config.COLOR_ALPHA
         # Embedding
@@ -140,12 +167,15 @@ class GlobalIDManager:
         info["last_bbox"] = bbox
 
     def _match_global(self, emb, color_sig, bbox, frame_idx) -> Optional[int]:
+        if emb is None or color_sig is None:
+            return None
+
         best_gid = None
         best_score = -1.0
         second_score = -1.0
 
         for gid, info in self.globals.items():
-            if gid in self.per_frame_used_globals:
+            if info["prototype"] is None:
                 continue
             sim = float(np.dot(emb, info["prototype"]))
             col_sim = self._color_similarity(

@@ -12,7 +12,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 import config
 from modules.detector_tracker import YOLOTracker
 
@@ -66,7 +66,7 @@ def main():
     tracker = YOLOTracker(
         model_path=args.model,
         tracker=config.TRACKER_CONFIG,
-        device=config.DEVICE,
+        device= "cpu",
         conf=args.conf,
     )
 
