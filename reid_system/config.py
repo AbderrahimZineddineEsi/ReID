@@ -112,11 +112,11 @@ REFINE_MAX_ASPECT_RATIO = 4.0         # reject crops taller than 3.5× wide (opt
 
 # Stage B – intra-folder
 MIN_TRACK_SIZE = 18                  # ignore tracks smaller than this
-SPLIT_REID_THRESHOLD = 0.9           # below this → different person
+SPLIT_REID_THRESHOLD = 0.90           # below this → different person
 SPLIT_COLOR_THRESHOLD = 0.65
 
 # Stage C – cross-folder merging
-MERGE_REID_THRESHOLD = 0.9
+MERGE_REID_THRESHOLD = 0.90
 MERGE_COLOR_THRESHOLD = 0.65
 MERGE_COLOR_WEIGHT = 0.20             # contribution of colour to merge score
 COHERENCE_MIN = 0.80                  # cluster must have mean self-similarity ≥ this
@@ -126,5 +126,5 @@ MIN_FOLDER_IMAGES_FINAL = 18          # drop folders with fewer images after ref
 
 # Large folder bonus
 LARGE_FOLDER_SIZE = 200             # clusters with ≥ this many images get relaxed thresholds
-LARGE_MERGE_REID_THRESHOLD = 0.87   # lower than normal 0.85? You later set normal to 0.90? Adjust as you like
+LARGE_MERGE_REID_THRESHOLD = 0.85   # lower than normal 0.85? You later set normal to 0.90? Adjust as you like
 LARGE_MERGE_COLOR_THRESHOLD = 0.65  # optional relaxed colour, but keep same if it works

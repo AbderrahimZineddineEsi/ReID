@@ -4,9 +4,11 @@ import subprocess
 from pathlib import Path
 
 # --- Configuration ---
-BASE_DIR = Path("reid_system/outputs/refined_v2_2")
-SCRIPT_TO_RUN = "reid_system/experiments/diagnose_folder_deep.py"
-OUTPUT_LOG_FILE = "refine_v2_2_diagnostics_results.txt"
+SCRIPT_DIR = Path(__file__).resolve().parent
+REID_ROOT = SCRIPT_DIR.parent
+BASE_DIR = REID_ROOT / "outputs/simplified_test_reid_085/refined"
+SCRIPT_TO_RUN = REID_ROOT / "experiments/diagnose_folder_deep.py"
+OUTPUT_LOG_FILE = REID_ROOT / "outputs/simplified_v2_diagnostics_results.txt"
 # ---------------------
 
 def main():
@@ -28,7 +30,7 @@ def main():
         
         for person_dir in person_folders:
             # sys.executable ensures it uses the Python from your active (.venv)
-            cmd =[sys.executable, SCRIPT_TO_RUN, "--input", str(person_dir)]
+            cmd = [sys.executable, str(SCRIPT_TO_RUN), "--input", str(person_dir)]
             
             # Create a nice header for the output
             header = f"\n{'='*60}\n"
