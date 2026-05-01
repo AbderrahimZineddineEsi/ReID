@@ -1,0 +1,6 @@
+ultralytics>=8.2
+boxmot>=10.0
+opencv-python
+numpy
+torch>=2.0
+tqdm

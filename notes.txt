@@ -6,5 +6,46 @@
 30 is 17
 32 is 1
 
-33 bad 
+
+okay now let's move to the next step, the cashier camera, in our project , there is gonna be one camera that does the face recognition, for starters we said we're making it the cashier camera but this isn't really important, what i want now is a new notebook that simulates how this camera work 
+
+
+
+
+
+it has to detect faces with high accuracy and never mix people 
+
+
+
+while detecting faces, it also detects persons, just like any other camera
+
+
+
+and this is the most important part, it links between each person and his recognized face
+
+
+
+to simulate this camera, i'm going to give you a video as input, and as output you're gonna produce : 
+
+
+
+
+
+video with detected faces and bounding boxes ( colored, named, and make it's clear ) 
+
+
+
+folder of persons, where each person has two folders :
+
+
+
+
+
+folders of crops of persons from a tracker organized by tracker
+
+
+
+folder of his detected face crops        
+
+
 

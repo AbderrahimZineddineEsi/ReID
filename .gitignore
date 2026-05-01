@@ -47,9 +47,6 @@ archive/
 
 # Outputs
 reid_system/outputs/
-step1_crops/
-step2_global_crops/
-tracked_*.mp4
 
 # Logs
 *.log
